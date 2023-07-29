@@ -2,11 +2,11 @@ const inquirer = require('inquirer');
 
 const questions = [
             {
-                type:"rawlist",
+                type:"list",
                 name: "options",
                 message: "what would you like to do? (use arrow keys)",
                 choices: [
-                    " View All Departments",
+                    "View All Departments",
                     "View All Roles",
                     "View All Employees",
                     "Add Department",
@@ -37,7 +37,7 @@ const questions = [
             {
                 type: 'input',
                 name: 'roleDepartment',
-                message: "Add a department for the new role:",
+                message: "Add a department ID for this role:",
                 when: (answers) => answers.options === "Add a Role",
             },
             {
