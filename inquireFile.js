@@ -61,7 +61,7 @@ const questions = [
                 name: 'role',
                 message: "Enter the employee's role:",
                 when: function (answers) {
-                    return answers.options === "Add an Employee":
+                    return answers.options === "Add an Employee:";
                 },
             },
             {
@@ -77,7 +77,7 @@ const questions = [
                 name: 'updateRole',
                 message: "Enter an updated role:",
                 when: function (answers) {
-                    return ,answers.options === "Update an Employee Role";
+                    return answers.options === "Update an Employee Role";
                 },
             },
 ]
