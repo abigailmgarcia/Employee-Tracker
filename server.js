@@ -34,7 +34,7 @@ const dbConfig = {
                 console.log(employees);
                 break;
             case "Add a Department":
-                connection.query("INSERT INTO department VALUES (?)", [answers.departmentName]);
+                connection.query(`INSERT INTO department (table_name) VALUES('${answers.departmentName}')`);
                 console.log("Department Successfully added");
                 break;
             case "Add a Role":
