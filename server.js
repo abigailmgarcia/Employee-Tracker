@@ -4,8 +4,8 @@ const mysql = require('mysql2');
 require('dotenv').config();
 
 
-const PORT = process.env.PORT || 3001;
-const app = express();
+// const PORT = process.env.PORT || 3001;
+// const app = express();
 
 //connect db
 const dbConfig = 
@@ -56,7 +56,7 @@ const dbConfig =
         }
     }
 
-    // close db
-    await connection.end();
+    // // close db
+    // await connection.end();
 
     main();
