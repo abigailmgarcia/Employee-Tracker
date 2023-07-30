@@ -13,10 +13,10 @@ VALUES(1, "Sales Lead", 1, 100000),
       (6, "Accountant", 4, 125000),
       (7, "Legal Team Lead", 3, 250000);
 
-INSERT INTO employee(id, first_name, last_name, role_id, salary, manager_id)
+INSERT INTO employee(id, first_name, last_name, role_id, manager_id)
 VALUES(1, "John", "Doe", "1", "1"),
       (2, "Betty", "White", "2", "1"),
       (3, "Vincent", "Campos", "2", "2"),
       (4, "Regina", "George", "4", "4"),
       (5, "Zayra", "Avelar", "5", "4"),
-      (6, "Adrian", "Esquivel", "6t", "4");
+      (6, "Adrian", "Esquivel", "6", "4");
