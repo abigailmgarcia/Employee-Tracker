@@ -106,16 +106,11 @@ const dbConfig = {
             case "Add an Employee":
                 connection.query(
                     "INSERT INTO employee (first_name, last_name, role_id, manager_id) VALUES (?, ?, ?, ?)",
-                 [
-                    answers.firstName,
-                    answers.lastName,
-                    answers.role,
-                    answers.manager,
-                 ],
+                 [answers.firstName, answers.lastName, answers.role, answers.manager],
                   function (err, res) {
                     if (err) throw err;
                     connection.query(
-                        "SELECT employee.id, employee.first_name, employee.last_name, role.title, table_name AS department, role.salary, CONCAT(manager.first_name, ' ', manager.last_name) AS manager FROM employee LEFT JOIN role ON employee.rold_id = role.id LEFT JOIN department ON role.department_id = department.id LEFT JOIN employee manager ON employee.manager_id = manager.id",
+                        "SELECT employee.id, employee.first_name, employee.last_name, role.title, table_name AS department, role.salary, CONCAT(manager.first_name, ' ', manager.last_name) AS manager FROM employee LEFT JOIN role ON employee.role_id = role.id LEFT JOIN department ON role.department_id = department.id LEFT JOIN employee manager ON employee.manager_id = manager.id",
                         (err, res) => {
                             if (err) throw err;
                             console.table(res);

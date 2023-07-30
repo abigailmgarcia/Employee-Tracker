@@ -16,7 +16,6 @@ async function init () {
                     "Add a role",
                     "Add an Employee",
                     "Update an Employee Role",
-                    "Exit"
                 ],
             },
             {
