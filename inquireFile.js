@@ -1,6 +1,9 @@
 const inquirer = require('inquirer');
+const mysql = require("mysql2")
 
-const questions = [
+async function init () {
+    return inquirer.prompt([
+
             {
                 type:"list",
                 name: "options",
@@ -13,11 +16,11 @@ const questions = [
                     "Add a role",
                     "Add an Employee",
                     "Update an Employee",
-                    "Update an Employee Role",
+                    "Exit"
                 ],
             },
             {
-                type: 'input',
+                type: "input",
                 name: 'departmentName',
                 message: 'Enter a new department name:',
                 when: (answers) => answers.options === "Add a Department",
@@ -59,27 +62,28 @@ const questions = [
             {
                 type: 'input',
                 name: 'role',
-                message: "Enter the employee's role:",
+                message: "Enter the employee's role ID:",
                 when: function (answers) {
                     return answers.options === "Add an Employee:";
                 },
             },
             {
-                type: 'input',
-                name: 'manager',
-                message: "Enter the employee's manage:",
+                type: "input",
+                name: "department",
+                message: "Enter the employee's department ID:",
                 when: function (answers) {
                     return answers.options === "Add an Employee";
                 },
             },
             {
                 type: 'input',
-                name: 'updateRole',
-                message: "Enter an updated role:",
+                name: 'manager',
+                message: "Enter the employee's manager ID:",
                 when: function (answers) {
-                    return answers.options === "Update an Employee Role";
+                    return answers.options === "Add an Employee";
                 },
-            },
-]
+            }
+        ])
+    }
 
-module.exports = { questions };
+module.exports = init;
