@@ -22,6 +22,7 @@ const dbConfig = {
             case "View All Departments":
                 connection.query("SELECT * FROM department", function (err, results){
                     if (err) throw err;
+                    console.log("");
                     console.table(results);
                 });
                 // console.log(departments);
