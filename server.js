@@ -32,7 +32,7 @@ const dbConfig = {
                 break;
             case "View All Employees":
                 connection.query(
-                    "SELECT e.id, e.first_name, e.last_name, r.title AS role, d.table_name AS department, r.salary, m.first_name, AS manager_first_name, m.last_name AS manager_last_name FROM employee e JOIN role r ON e.role_id = r.id JOIN department d ON r.department_id = d.id LEFT JOIN employee m ON e.manager_id = m.id",
+                    "SELECT e.id, e.first_name, e.last_name, r.title AS role, d.table_name AS department, r.salary, m.first_name AS manager_first_name, m.last_name AS manager_last_name FROM employee e JOIN role r ON e.role_id = r.id JOIN department d ON r.department_id = d.id LEFT JOIN employee m ON e.manager_id = m.id",
                     function (err, results){
                         if (err) {
                             console.error(err);
@@ -42,7 +42,7 @@ const dbConfig = {
                                     id: row.id,
                                     first_name: row.first_name,
                                     last_name: row.last_name,
-                                    role: now.role,
+                                    role: row.role,
                                     department: row.department,
                                     salary: row.salary,
                                     managers: `${row.manager_first_name}${row.manager_last_name}`,
@@ -76,11 +76,6 @@ const dbConfig = {
                 );
                 break;
             case "Add a Role":
-                const values = [
-                    answers.roleTitle,
-                    answers.roleSalary,
-                    answers.roleDepartment,
-                ];
                 connection.query(
                     `INSERT INTO role (title, salary, department_id) VALUES ('${answers.roleTitle}', '${answers.roleSalary}', '${answers.roleDepartment}')`,
                         function (err, results) {
@@ -89,6 +84,16 @@ const dbConfig = {
                                 return;
                             }
                             console.log("Role added successfully");
+                            connection.query(
+                                "SELECT role.id, role.title, role.salary, department.table_name AS department FROM role JOIN department ON role.department_id = department.id",
+                                function (err, results) {
+                                    if (err) {
+                                        console.err(err);
+                                        return;
+                                    }
+                                    console.table(results);
+                                }
+                            )
                         }
                 );
                 break;
@@ -101,9 +106,15 @@ const dbConfig = {
                     answers.department,
                     answers.salary,
                     answers.manager,
-                 ]
+                 ],
+                  function (err, results){
+                    if (err) {
+                        console.err(err);
+                        return;
+                    }
+                    console.log("employee added!");
+                  }
                  );
-                 console.log("employee added successfully");
                  break;
             case "Update an Employee":
                 console.log("Update an employee");
