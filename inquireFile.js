@@ -12,8 +12,8 @@ async function init () {
                     "View All Departments",
                     "View All Roles",
                     "View All Employees",
-                    "Add Department",
-                    "Add a role",
+                    "Add a Department",
+                    "Add a Role",
                     "Add an Employee",
                     "Update an Employee Role",
                 ],
@@ -63,7 +63,7 @@ async function init () {
                 name: 'role',
                 message: "Enter the employee's role ID:",
                 when: function (answers) {
-                    return answers.options === "Add an Employee:";
+                    return answers.options === "Add an Employee";
                 },
             },
             {
